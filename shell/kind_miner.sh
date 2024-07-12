@@ -34,7 +34,7 @@ time_difference=$((current_time_seconds - latest_block_time))
 
 # 如果時間差超過 60 秒（1 分鐘），則執行 miner.sh
 if [ $time_difference -gt 60 ]; then
-    $BASEDIR/miner.sh
+    "$BASEDIR/miner.sh"
 else
-    echo "在 $time_difference 秒前正常出塊"
+    echo "在 $time_difference 秒前已有人挖礦"
 fi

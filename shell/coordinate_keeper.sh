@@ -43,13 +43,13 @@ if [ "$target_block_number" -gt 0 ]; then
     echo "本地資料: $local_block_hash"
     echo "遠端資料: $remote_block_hash"
     if [ "$local_block_hash" != "$remote_block_hash" ]; then
-        $BASEDIR/keeper.sh
+        "$BASEDIR/keeper.sh"
     else
         echo "本地和遠端的區塊 blockhash 一致"
     fi
 elif [ -z "$local_latest_block_number" ]; then
     echo "嘗試啟動同步"
-    $BASEDIR/keeper.sh
+    "$BASEDIR/keeper.sh"
 else
     echo "區塊鏈尚在同步中"
 fi

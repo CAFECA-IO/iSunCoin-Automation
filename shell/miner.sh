@@ -7,7 +7,7 @@ BASEDIR=$(dirname "$0")
 screen -X -S isuncoin-miner quit
 
 # 定義地址陣列
-$BASEDIR/address_picker.sh
+source "$BASEDIR/address_picker.sh"
 
 echo ${selectedAddress}
 
