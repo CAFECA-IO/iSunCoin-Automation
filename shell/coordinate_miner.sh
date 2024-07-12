@@ -6,6 +6,9 @@ BASEDIR=$(dirname "$0")
 # 取得目前連線節點數量的函數
 get_peer_count() {
     peer_count=$(isuncoin --datadir /workspace/isuncoin-miner attach <<< "net.peerCount" | awk '/^[0-9]+$/{print $1}')
+    if [ -z "$block_number" ]; then
+        block_number=0
+    fi
     echo $peer_count
 }
 
@@ -32,7 +35,7 @@ get_remote_block_hash() {
 # 取得目前連線節點數量
 peer_count=$(get_peer_count)
 
-if [ -z "$peer_count" -o "$peer_count" -lt 1 ]; then
+if [ "$peer_count" -lt 1 ]; then
     echo "重新初始化區塊鏈網路連線"
 
     # 關閉已經運行的 isuncoin-miner
