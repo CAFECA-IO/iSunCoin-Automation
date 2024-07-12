@@ -32,7 +32,7 @@ get_remote_block_hash() {
 # 取得目前連線節點數量
 peer_count=$(get_peer_count)
 
-if [ "$peer_count" -lt 1 -o -z "$peer_count" ]; then
+if [ -z "$peer_count" -o "$peer_count" -lt 1 ]; then
     echo "重新初始化區塊鏈網路連線"
 
     # 關閉已經運行的 isuncoin-miner
