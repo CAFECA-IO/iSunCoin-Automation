@@ -1,11 +1,13 @@
 #!/bin/bash
 
+# 取得當前目錄位置
+BASEDIR=$(dirname "$0")
+
 # 檢查並關閉已經運行的 isuncoin-miner
 screen -X -S isuncoin-miner quit
 
 # 定義地址陣列
-addresses=("0xCAFECA05eB2686e2D7e78449F35d8F6D2Faee174")
-selectedAddress=${addresses[ $RANDOM % ${#addresses[@]} ]}
+$BASEDIR/address_picker.sh
 
 echo ${selectedAddress}
 
