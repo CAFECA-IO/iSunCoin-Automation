@@ -1,4 +1,5 @@
 #!/bin/bash
+# 只保存資料不參與挖礦
 
 # 檢查並關閉已經運行的 isuncoin-keeper
 screen -X -S isuncoin-keeper quit
