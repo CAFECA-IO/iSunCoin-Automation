@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# 取得當前目錄位置
+BASEDIR=$(dirname "$0")
+
 # 取得本地最新區塊號碼的函數
 get_local_latest_block_number() {
     block_number=$(isuncoin --datadir /workspace/isuncoin-miner attach <<< "eth.blockNumber" | awk '/^[0-9]+$/{print $1}')
@@ -40,13 +43,13 @@ if [ "$target_block_number" -gt 0 ]; then
     echo "本地資料: $local_block_hash"
     echo "遠端資料: $remote_block_hash"
     if [ "$local_block_hash" != "$remote_block_hash" ]; then
-        ./kind_miner.sh
+        $BASEDIR/kind_miner.sh
     else
         echo "本地和遠端的區塊 blockhash 一致"
     fi
 elif [ "$local_latest_block_number" -gt 0 ]; then
     echo "嘗試啟動挖礦"
-    ./kind_miner.sh
+    $BASEDIR/kind_miner.sh
 else
     echo "區塊鏈尚在同步中"
 fi
