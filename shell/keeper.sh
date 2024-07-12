@@ -8,4 +8,4 @@ screen -X -S isuncoin-keeper quit
 rm /workspace/isuncoin-keeper/iSunCoin/chaindata/ /workspace/isuncoin-keeper/iSunCoin/ethash/ /workspace/isuncoin-keeper/iSunCoin/jwtsecret /workspace/isuncoin-keeper/iSunCoin/LOCK /workspace/isuncoin-keeper/iSunCoin/transactions.rlp /workspace/isuncoin-keeper/iSunCoin/triecache/ -rf
 
 # 啟動 isuncoin 同步數據
-screen -dmS isuncoin-keeper isuncoin --datadir /workspace/isuncoin-keeper --port 30303 --authrpc.port 8553
+screen -dmS isuncoin-keeper isuncoin --datadir /workspace/isuncoin-keeper --http --http.api eth,net,web3 --http.port 8545 --port 30303 --authrpc.port 8551
