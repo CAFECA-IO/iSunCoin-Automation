@@ -1,5 +1,6 @@
 #!/bin/bash
 # 需安裝 jq
+# 太久沒人挖礦才會啟動
 
 # 取得最新區塊號碼的函數
 get_latest_block_number() {
@@ -30,7 +31,7 @@ time_difference=$((current_time_seconds - latest_block_time))
 
 # 如果時間差超過 60 秒（1 分鐘），則執行 miner.sh
 if [ $time_difference -gt 60 ]; then
-    /workspace/miner.sh
+    ./miner.sh
 else
     echo "在 $time_difference 秒前正常出塊"
 fi
