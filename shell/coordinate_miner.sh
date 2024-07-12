@@ -47,7 +47,7 @@ if [ "$target_block_number" -gt 0 ]; then
     else
         echo "本地和遠端的區塊 blockhash 一致"
     fi
-elif [ "$local_latest_block_number" -gt 0 ]; then
+elif [ -z "$local_latest_block_number" ]; then
     echo "嘗試啟動挖礦"
     $BASEDIR/kind_miner.sh
 else
