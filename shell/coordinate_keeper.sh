@@ -5,14 +5,14 @@ BASEDIR=$(dirname "$0")
 
 # 取得本地最新區塊號碼的函數
 get_local_latest_block_number() {
-    block_number=$(isuncoin --datadir /workspace/isuncoin-miner attach <<< "eth.blockNumber" | awk '/^[0-9]+$/{print $1}')
+    block_number=$(isuncoin --datadir /workspace/isuncoin-keeper attach <<< "eth.blockNumber" | awk '/^[0-9]+$/{print $1}')
     echo $block_number
 }
 
 # 取得本地區塊 hash 的函數
 get_local_block_hash() {
     block_number=$1
-    block_hash=$(isuncoin --datadir /workspace/isuncoin-miner attach <<< "eth.getBlockByNumber($block_number).hash" | awk -F '"' '/^"0x/ {print $2}')
+    block_hash=$(isuncoin --datadir /workspace/isuncoin-keeper attach <<< "eth.getBlockByNumber($block_number).hash" | awk -F '"' '/^"0x/ {print $2}')
     echo $block_hash
 }
 
