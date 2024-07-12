@@ -44,6 +44,9 @@ if [ "$target_block_number" -gt 0 ]; then
     else
         echo "本地和遠端的區塊 blockhash 一致"
     fi
+else if [ "$local_latest_block_number" -gt 0 ]; then
+    echo "嘗試啟動挖礦"
+    ./kind_miner.sh
 else
     echo "區塊鏈尚在同步中"
 fi
