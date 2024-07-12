@@ -3,6 +3,12 @@
 # 取得當前目錄位置
 BASEDIR=$(dirname "$0")
 
+# 取得目前連線節點數量的函數
+get_peer_count() {
+    peer_count=$(isuncoin --datadir /workspace/isuncoin-miner attach <<< "net.peerCount" | awk '/^[0-9]+$/{print $1}')
+    echo $peer_count
+}
+
 # 取得本地最新區塊號碼的函數
 get_local_latest_block_number() {
     block_number=$(isuncoin --datadir /workspace/isuncoin-miner attach <<< "eth.blockNumber" | awk '/^[0-9]+$/{print $1}')
@@ -22,6 +28,15 @@ get_remote_block_hash() {
     block_hash=$(curl -s -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_getBlockByNumber","params":["'"$block_number_hex"'", false],"id":1}' $2 | jq -r '.result.hash')
     echo $block_hash
 }
+
+# 取得目前連線節點數量
+peer_count=$(get_peer_count)
+
+if [ "$peer_count" -lt 1 ]; then
+    # 關閉已經運行的 isuncoin-miner
+    screen -X -S isuncoin-miner quit
+    echo "重新初始化區塊鏈網路連線"
+fi
 
 # 取得本地最新區塊號碼
 local_latest_block_number=$(get_local_latest_block_number)
