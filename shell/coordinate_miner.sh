@@ -6,8 +6,8 @@ BASEDIR=$(dirname "$0")
 # 取得目前連線節點數量的函數
 get_peer_count() {
     peer_count=$(isuncoin --datadir /workspace/isuncoin-miner attach <<< "net.peerCount" | awk '/^[0-9]+$/{print $1}')
-    if [ -z "$block_number" ]; then
-        block_number=0
+    if [ -z "$peer_count" ]; then
+        peer_count=0
     fi
     echo $peer_count
 }
