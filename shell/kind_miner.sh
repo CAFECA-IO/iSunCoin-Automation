@@ -2,6 +2,9 @@
 # 需安裝 jq
 # 太久沒人挖礦才會啟動
 
+# 取得當前目錄位置
+BASEDIR=$(dirname "$0")
+
 # 取得最新區塊號碼的函數
 get_latest_block_number() {
     block_number_hex=$(curl -s -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}' https://isuncoin.baifa.io | jq -r '.result')
@@ -31,7 +34,7 @@ time_difference=$((current_time_seconds - latest_block_time))
 
 # 如果時間差超過 60 秒（1 分鐘），則執行 miner.sh
 if [ $time_difference -gt 60 ]; then
-    ./miner.sh
+    $BASEDIR/miner.sh
 else
     echo "在 $time_difference 秒前正常出塊"
 fi
