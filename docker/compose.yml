@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  isuncoin:
+    image: ubuntu:24.04
+    container_name: isuncoin-001
+    tty: true
+    stdin_open: true
+    volumes:
+      - ../extra:/workspace
+    environment:
+      - MINER=0x3387285da704ae38232f53bd8f71e1fa071d1a18
+#    command: >
+#      /workspace/isuncoin --mine --miner.threads=1 --miner.etherbase $MINER
