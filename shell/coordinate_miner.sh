@@ -42,7 +42,7 @@ if [ "$peer_count" -lt 1 ]; then
     screen -X -S isuncoin-miner quit
 
     # 重新啟動挖礦    
-    "$BASEDIR/kind_miner.sh"
+    "$BASEDIR/miner.sh"
 else
     # 取得本地最新區塊號碼
     local_latest_block_number=$(get_local_latest_block_number)
